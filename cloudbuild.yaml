@@ -1,0 +1,16 @@
+steps:
+  - name: node:18.15.0
+    entrypoint: npm
+    args: ["install"]
+  - name: node:18.15.0
+    entrypoint: npm
+    args: ["run", "create-env"]
+    env:
+      - "DISCORD_TOKEN=${_DISCORD_TOKEN}"
+      - "DISCORD_CLIENT_ID=${_DISCORD_CLIENT_ID}"
+      - "TWITCH_CLIENT_ID=${_TWITCH_CLIENT_ID}"
+      - "TWITCH_CLIENT_SECRET=${_TWITCH_CLIENT_SECRET}"
+      - "WEB_SERVER=${_WEB_SERVER}"
+  - name: "gcr.io/cloud-builders/gcloud"
+    args: ["app", "deploy"]
+timeout: "1600s"
