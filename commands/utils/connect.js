@@ -45,11 +45,11 @@ module.exports = {
 			return;
 		}
 
-		// Check if user is already connected
-		let userData = await axios({
-			method: 'get',
-			url: `${process.env.WEB_SERVER}/api/link/?discordId=${user.id}&twitchId=${twitchUser.id}`,
-		});
+    // Check if user is already connected
+    let userData = await axios({
+      method: "get",
+      url: `${process.env.WEB_SERVER}/api/link/?discordId=${user.id}&twitchId=${twitchUser.id}`,
+    });
 
 		userData = userData.data;
 		if (userData.linked === true) {
