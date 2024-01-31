@@ -49,10 +49,6 @@ module.exports = {
 		let userData = await axios({
 			method: 'get',
 			url: `${process.env.WEB_SERVER}/api/link/?discordId=${user.id}&twitchId=${twitchUser.id}`,
-			data: {
-				discordId: user.id,
-				twitchId: twitchUser.id,
-			},
 		});
 
 		userData = userData.data;
