@@ -19,7 +19,7 @@ module.exports = {
         .setRequired(true)
     ),
   async execute(interaction) {
-    const ADMIN_ID = ["127548771490988033", "231586823384596480"];
+    const ADMIN_ID = ["127548771490988033", "231586823384596480", "354522985643900928", "439219610978615317"];
     await interaction.deferReply();
     user = interaction.user;
     const targetUser = interaction.options.getUser("user");
