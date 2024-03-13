@@ -42,11 +42,19 @@ module.exports = {
 				method: 'get',
 				url: `${process.env.WEB_SERVER}/api/code/?discordId=${user.id}`,
 			});
-
 			const codeList = codes.data.code.map((code) => code.code);
 
 			// Send codes to user
-			await user.send(codeList.join('\n'));
+			// If there are more than 100 codes, send them in chunks of 100
+			const chunkedCodes = [];
+			for (let i = 0; i+100 < codeList.length; i += 100) {
+				chunkedCodes.push(codeList.slice(i, i + 100));
+			}
+			chunkedCodes.push(codeList.slice(chunkedCodes.length *100 , codeList.length));
+			for (const chunk of chunkedCodes) {
+				await user.send(chunk.join('\n'));
+			}
+			
 			if (codes.data.outOfCodes === true) {
 				const errorEmbed = templateEmbed()
 					.setTitle('Error: Out of codes!')
